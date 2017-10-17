@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Hub</title>
+    <link rel="icon", href="static/img/favicon.png", type="image/x-icon"/>
+    <link rel="stylesheet" href="flatpickr.css">
+    <link rel="stylesheet" href="./plugins/confirmDate/confirmDate.css">
+  </head>
+
+  <script src="./flatpickr.js"> </script>
+  <script src="./plugins/confirmDate/confirmDate.js"> </script>
+  <script src="./plugins/weekSelect/weekSelect.js"></script>
+  <script src="./plugins/rangePlugin.js"></script>
+  <style></style>
+  <body>
+    <input id="app">
+    <!-- built files will be auto injected -->
+  </body>
+
+  <script>
+     var fp
+     function isSameWeek(old,now){  
+         var oneDayTime = 1000*60*60*24;  
+         var old_count =parseInt(old.getTime()/oneDayTime);  
+         var now_other =parseInt(now.getTime()/oneDayTime);  
+         return parseInt((old_count+4)/7) == parseInt((now_other+4)/7);  
+     }  
+     var now = new Date()
+     document.onreadystatechange = function () {
+          fp = flatpickr("#app", {
+           allowInput: true,
+           onChange: function (params) {
+             console.log(params)
+           },
+           disable: [
+               function(date) {
+                   return date > now || isSameWeek(date, now)
+               }
+           ],
+           plugins: [new rangePlugin({}), ]
+         });
+     }
+</script>
+
+<style>
+  .flatpickr-radio {
+    margin: 12px 0px;
+  }
+  </style>
+</html>

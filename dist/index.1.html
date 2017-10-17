@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Hub</title>
+    <link rel="icon", href="static/img/favicon.png", type="image/x-icon"/>
+    <link rel="stylesheet" href="flatpickr.min.css">
+    <link rel="stylesheet" href="./plugins/confirmDate/confirmDate.css">
+  </head>
+
+  <script src="./flatpickr.min.js"> </script>
+  <script src="./plugins/confirmDate/confirmDate.js"> </script>
+  <script src="./plugins/weekSelect/weekSelect.js"></script>
+  <style></style>
+  <body>
+    <input id="app">
+    <!-- built files will be auto injected -->
+  </body>
+
+  <script>
+    const fp = flatpickr("#app", {
+      plugins: [new weekSelectPlugin({})]
+    });
+
+
+  </script>
+
+  <style>
+  .flatpickr-radio {
+    margin: 12px 0px;
+  }
+  </style>
+</html>
